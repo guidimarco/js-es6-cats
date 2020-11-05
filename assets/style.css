@@ -24,14 +24,14 @@ h2 {
     margin-bottom: 10px;
 }
 
-.container {
+#cat-container {
     width: 100%;
 }
-.female-container, .male-container {
+#female-container, #male-container {
     width: 50%;
     float: left;
 }
-.container::after, .female-container::after, .male-container::after {
+#cat-container::after, #female-container::after, #male-container::after {
     display: table;
     content: "";
     clear: both;
@@ -49,6 +49,13 @@ h2 {
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
+    position: relative;
+}
+
+.ribbon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 /* </1-fold> EEEEE ALL DOC CLASSES EEEEE */

@@ -29,45 +29,92 @@ $( document ).ready(function() {
     console.log(cats);
 
     // FUNCTION
-
-
-    // milestone 1
-    cats.forEach((cat) => {
-        // create a new-cat-card
+    const printCat = (cat, container) => { // create a new-cat-card
+        // LOCAL VAR
         let {name, color} = cat; // destructuration
 
-        $("#cat-container").append(`
+        container.append(`
             <div class="cat-card">
                 <h2>${name}</h2>
                 <i class="fas fa-cat fa-3x" style="color: ${color}"></i>
             </div>
         `);
+    };
+    const printRibbon = (cat, container) => { // create a new-cat-card
+        // LOCAL VAR
+        let {color, opacity} = cat.ribbon; // destructuration
+
+        container.append(`
+            <div class="ribbon">
+                <i class="fas fa-ribbon fa-2x" style="color: ${color}; opacity: ${opacity}"></i>
+            </div>
+        `);
+    };
+
+    // ALGORITHM
+    // milestone 1
+    cats.forEach((cat) => {
+        let container = $("#cat-container");
+        printCat(cat, container);
     });
 
-    // // PART 2
-    // const femaleCats = [];
-    // const maleCats = [];
-    //
-    // cats.forEach( (cat, i) => {
-    //     // create a new-cat-card
-    //     let thisCard = $(".container").clone(); // clone
-    //
-    //     let {gender, age} = cat; // destructuration
-    //
-    //     if (gender == "male") {
-    //         // it's male
-    //         maleCats.push(cat);
-    //         $(thisCard).appendTo(".male-container");
-    //     } else {
-    //         // it's female
-    //         femaleCats.push(cat);
-    //         $(thisCard).appendTo(".female-container");
-    //     }
-    // });
-    //
-    //
-    //
-    // console.log(femaleCats);
-    // console.log(maleCats);
+    // milestone 2
+    // filter: gender == female
+    let femaleCats = cats.filter((cat) => {
+        let {gender} = cat;
+        return gender == "female";
+    });
+    console.log(femaleCats);
+
+    // print-out: card and ribbon
+    femaleCats.forEach((cat, i) => {
+        let container = $("#female-container");
+        printCat(cat, container);
+
+        // CREATE RIBBON - LOCAL VAR
+        let color = "pink"; // set the female-color
+        let opacity = cat.age; // set the opacity
+        // console.log(color);
+        // console.log(opacity);
+
+        cat.ribbon = { // add new property
+            color,
+            opacity
+        };
+        // console.log(cat.ribbon);
+
+        let ribbonContainer = $("#female-container .cat-card:nth-of-type(" + (i+1) + ")");
+        // console.log(ribbonContainer);
+        printRibbon(cat, ribbonContainer);
+    });
+
+    // filter: gender == male
+    let maleCats = cats.filter((cat) => {
+        let {gender} = cat;
+        return gender == "male";
+    });
+    console.log(maleCats);
+
+    // print-out: card and ribbon
+    maleCats.forEach((cat, i) => {
+        let container = $("#male-container");
+        printCat(cat, container);
+
+        // CREATE RIBBON - LOCAL VAR
+        let color = "blue"; // set the female-color
+        let opacity = cat.age; // set the opacity
+        // console.log(color);
+        // console.log(opacity);
+
+        cat.ribbon = { // add new property
+            color,
+            opacity
+        };
+        // console.log(cat.ribbon);
+
+        let ribbonContainer = $("#male-container .cat-card:nth-of-type(" + (i+1) + ")");
+        // console.log(ribbonContainer);
+        printRibbon(cat, ribbonContainer);
+    });
 
 });
