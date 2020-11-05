@@ -117,4 +117,41 @@ $( document ).ready(function() {
         printRibbon(cat, ribbonContainer);
     });
 
+    // milestone 3
+    const copyOfCats = [];
+    // console.log(copyOfCats);
+
+    femaleCats.forEach((cat) => {
+        let {name, color, ribbon} = cat;
+        // console.log(name);
+        // console.log(color);
+        // console.log(ribbon);
+
+        let cloneCat = {
+            name,
+            color,
+            ribbon
+        };
+        // console.log(cloneCat);
+
+        copyOfCats.push(cloneCat); // push
+    });
+
+    maleCats.forEach((cat) => {
+        let {name, color, ribbon} = cat;
+        // console.log(name);
+        // console.log(color);
+        // console.log(ribbon);
+
+        let cloneCat = {
+            name,
+            color,
+            ribbon
+        };
+        // console.log(cloneCat);
+
+        copyOfCats.push(cloneCat); // push
+    });
+    console.log(copyOfCats);
+
 });
